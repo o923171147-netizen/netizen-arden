@@ -115,4 +115,285 @@
     }
 
     /* ==========================================================================
-       🖥️ 大螢幕專
+       🖥️ 大螢幕專用：固定式側邊導覽列 (寬度 280px)
+       ========================================================================== */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      transition: var(--transition-normal);
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-weight: bold;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .brand-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #ffffff, #9ca3af);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu-item a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: var(--transition-fast);
+    }
+
+    .menu-item a:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+
+    .menu-item.active a {
+      background-color: rgba(var(--color-primary-rgb), 0.15);
+      color: var(--color-primary);
+      border-left: 3px solid var(--color-primary);
+    }
+
+    .menu-item svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* 核心修正：主內容區區塊（預留側邊欄空間，並嚴格貼齊左右側） */
+    .main-content {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      padding: 40px 40px; /* 上下 40px，左右 40px 嚴格對齊 */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      transition: var(--transition-normal);
+    }
+
+    /* 頂部全域大標題樣式（網民-arden） */
+    .main-title-bar {
+      width: 100%;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: -10px;
+    }
+
+    .main-title-bar h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+    }
+
+    /* ==========================================================================
+       📱 行動端專用：頂部導覽橫條 (大螢幕下預設隱藏)
+       ========================================================================== */
+    .top-header {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--header-height);
+      background-color: rgba(8, 11, 17, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0 24px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 90;
+    }
+
+    .menu-toggle-btn {
+      color: var(--text-primary);
+    }
+
+    .menu-toggle-btn svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+    }
+
+    /* 多分頁卡片切換動畫 */
+    section {
+      display: none;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 頁面子標題樣式 */
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .section-category {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-top: 4px;
+      max-width: 800px;
+    }
+
+    /* 儀表板關鍵指標卡片區 */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .metric-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-fast);
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(var(--color-primary-rgb), 0.3);
+    }
+
+    .metric-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background-color: rgba(var(--color-primary-rgb), 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      margin-bottom: 16px;
+    }
+
+    .metric-card.accent .metric-icon {
+      background-color: rgba(6, 182, 212, 0.1);
+      color: var(--color-accent);
+    }
+
+    .metric-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .metric-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 6px 0;
+      font-family: var(--font-title);
+    }
+
+    .metric-change {
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .metric-change.positive {
+      color: #10b981;
+    }
+
+    /* 📊 圖表雙欄網格配置 */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .chart-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chart-card h3 {
+      font-size: 1.1rem;
