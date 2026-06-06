@@ -209,16 +209,31 @@
       gap: 12px;
     }
 
-    /* 主內容區區塊（預留側邊欄空間） */
+    /* 核心修正：主內容區區塊（預留側邊欄空間，並嚴格貼齊左右側） */
     .main-content {
       flex: 1;
       margin-left: var(--sidebar-width);
-      padding: 40px;
+      padding: 40px 40px; /* 上下 40px，左右 40px 嚴格對齊 */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       gap: 40px;
       transition: var(--transition-normal);
+    }
+
+    /* 頂部全域大標題樣式（網民-arden） */
+    .main-title-bar {
+      width: 100%;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: -10px;
+    }
+
+    .main-title-bar h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
     }
 
     /* ==========================================================================
@@ -266,7 +281,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 頁面大標題樣式 */
+    /* 頁面子標題樣式 */
     .section-header {
       margin-bottom: 28px;
     }
@@ -683,7 +698,7 @@
       
       .main-content {
         margin-left: 0;               /* 填補左側排版間距 */
-        padding: 110px 24px 40px;     /* 為頂部漢堡列預留高度空間 */
+        padding: 110px 24px 40px;     /* 為頂部漢堡列預留高度空間，左右保持對齊縮排 */
       }
       
       .top-header {
@@ -697,8 +712,12 @@
 
     /* 2. 小螢幕（智慧型手機級別：480px 以下） */
     @media (max-width: 480px) {
+      .main-title-bar h1 {
+        font-size: 1.8rem;            /* 縮小最上方主標題 */
+      }
+
       .section-title {
-        font-size: 1.5rem;            /* 縮小標題字體，防長字破音 */
+        font-size: 1.5rem;            /* 縮小分頁內部標題，防長字破音 */
       }
       
       .metrics-row {
@@ -726,7 +745,7 @@
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-brand">
         <div class="brand-logo">G</div>
-        <span class="brand-name">GreenLogiTech</span>
+        <span class="brand-name">綠羅技</span>
       </div>
       
       <nav class="sidebar-nav">
@@ -779,6 +798,10 @@
 
     <main class="main-content">
       
+      <div class="main-title-bar">
+        <h1>網民-arden</h1>
+      </div>
+
       <section id="dashboard-section" class="active">
         <div class="section-header">
           <span class="section-category">Sustainable Technology & ESG Overview</span>
