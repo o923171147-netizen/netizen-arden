@@ -1,0 +1,29 @@
+/* ======= 響應式核心中介斷點（平板與手機開關） ======= */
+@media (max-width: 1023px) {
+  .sidebar {
+    transform: translateX(-100%); /* 收起側邊欄 */
+  }
+  .sidebar.mobile-active {
+    transform: translateX(0); /* 漢堡按鈕點擊時滑出 */
+  }
+  .main-content {
+    margin-left: 0; /* 清空側邊欄留白 */
+    padding: 110px 24px 40px; /* 留出頂部漢堡橫條的高度 */
+  }
+  .top-header {
+    display: flex; /* 喚醒手機版頂部漢堡列 */
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr; /* 圖表由雙欄降為單欄 */
+  }
+}
+
+/* ======= 極小螢幕斷點（智慧型手機優化） ======= */
+@media (max-width: 480px) {
+  .section-title { font-size: 1.5rem; } /* 縮小大標題，防止換行破壞美感 */
+  .metrics-row { grid-template-columns: 1fr; } /* 數據卡片降為純單欄 */
+  .slide-controls {
+    flex-wrap: wrap; /* 簡報器按鈕自動換行防擠壓 */
+    justify-content: center;
+  }
+}
