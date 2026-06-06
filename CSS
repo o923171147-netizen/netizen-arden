@@ -1,29 +1,29 @@
-/* ======= 響應式核心中介斷點（平板與手機開關） ======= */
-@media (max-width: 1023px) {
-  .sidebar {
-    transform: translateX(-100%); /* 收起側邊欄 */
-  }
-  .sidebar.mobile-active {
-    transform: translateX(0); /* 漢堡按鈕點擊時滑出 */
-  }
-  .main-content {
-    margin-left: 0; /* 清空側邊欄留白 */
-    padding: 110px 24px 40px; /* 留出頂部漢堡橫條的高度 */
-  }
-  .top-header {
-    display: flex; /* 喚醒手機版頂部漢堡列 */
-  }
-  .dashboard-grid {
-    grid-template-columns: 1fr; /* 圖表由雙欄降為單欄 */
-  }
+/* 1. 確保上方大標題（網民-arden）與下方內容有一致的左側間距 */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width); /* 電腦版保留側邊欄寬度 */
+  padding: 40px 40px; /* 上下 40px，左右 40px */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  transition: var(--transition-normal);
 }
 
-/* ======= 極小螢幕斷點（智慧型手機優化） ======= */
-@media (max-width: 480px) {
-  .section-title { font-size: 1.5rem; } /* 縮小大標題，防止換行破壞美感 */
-  .metrics-row { grid-template-columns: 1fr; } /* 數據卡片降為純單欄 */
-  .slide-controls {
-    flex-wrap: wrap; /* 簡報器按鈕自動換行防擠壓 */
-    justify-content: center;
+/* 2. 檢查你頂部標題區域的結構（例如大標題橫條） 
+   確保它沒有額外的 margin-left 或 padding-left 導致跟下方內容錯開。
+   如果上方標題是寫在 main-content 內部，請確保它遵循正常的流式排版： */
+.main-content h1, 
+.main-content .section-header {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  width: 100%;
+}
+
+/* 3. 修正 RWD 斷點，確保在中小螢幕（側邊欄收起時）內容會完全貼齊左側 */
+@media (max-width: 1023px) {
+  .main-content {
+    margin-left: 0; /* 收起側邊欄時，清空左邊距 */
+    padding: calc(var(--header-height) + 24px) 24px 40px; /* 左右留 24px 安全邊距 */
   }
 }
